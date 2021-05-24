@@ -1,0 +1,20 @@
+az vm create \
+    --resource-group learn-0eb158fd-2140-4026-84af-3c119d31440d \
+    --name vm1 \
+    --image UbuntuLTS \
+    --custom-data cloud-init.txt \
+    --generate-ssh-keys
+
+
+cat <<EOF > cloud-init.txt
+#cloud-config
+package_upgrade: true
+packages:
+- stress
+runcmd:
+- sudo stress --cpu 1
+EOF
+
+
+
+
